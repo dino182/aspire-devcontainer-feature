@@ -13,22 +13,22 @@ set -e
 # default to latest if not specified
 VERSION="${VERSION:-"latest"}"
 
-if [[ ! $VERSION =~ ^(9\.1|latest|latest-daily)$ ]]; then
-    echo "Error: VERSION must be either '9.1', '9.1.0', 'latest', or 'latest-daily' not: '$VERSION'."
+if [[ ! $VERSION =~ ^(9\.3|latest|latest-daily)$ ]]; then
+    echo "Error: VERSION must be either '9.3', '9.3.0', 'latest', or 'latest-daily' not: '$VERSION'."
     exit 1
 fi
 
-if [[ $VERSION =~ ^(9\.1|9\.1\.0|latest)$ ]]; then
-    VERSION="9.1.0"
+if [[ $VERSION =~ ^(9\.3|9\.3\.0|latest)$ ]]; then
+    VERSION="9.3.0"
 fi
 
 echo "Activating feature '.NET Aspire' version: $VERSION"
 
-# Before .NET Aspire 9.1 install required `dotnet workload`: this is no longer necessary, as Aspire is 
+# Before .NET Aspire 9.3 install required `dotnet workload`: this is no longer necessary, as Aspire is 
 # installed when restoring Aspire projects. It's only necessary to install the appropriate version of the templates.
 
 
-if [[ $VERSION =~ ^(9\.1\.0)$ ]]; then
+if [[ $VERSION =~ ^(9\.3\.0)$ ]]; then
     dotnet new install --force Aspire.ProjectTemplates::$VERSION
 else
     # https://github.com/dotnet/aspire/blob/main/docs/using-latest-daily.md
